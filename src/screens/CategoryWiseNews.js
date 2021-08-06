@@ -1,14 +1,35 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import NewsArticleListItem from '../components/NewsArticleListItem';
 
-const CategoryWiseNews = () => {
+const CategoryWiseNews = ({ route }) => {
+
+  const [newsArticleList, setNewsArticleList] = useState([]);
+
+  const newsCategory = route.name;
+
+  const fetchCategoryWiseNews = () => {
+
+    fetch(`https://toofan-xpress-backend.herokuapp.com/category?q=${newsCategory}`)
+      .then(response => (response.json()))
+      .then(data => {
+        setNewsArticleList(data.articles);
+      })
+      .catch(error => console.error(error));
+  };
+
+
+  useEffect(() => {
+    fetchCategoryWiseNews();
+  }, []);
+
   return (
     <View style={styles.homeScreen}>
-      <Text>Entertainment News Will come Here</Text>
-      <Text>Entertainment News Will come Here</Text>
-      <Text>Entertainment News Will come Here</Text>
-      <Text>Entertainment News Will come Here</Text>
-      <Text>Entertainment News Will come Here</Text>
+      <ScrollView style={styles.newsList}>
+        {newsArticleList.map((article, index) => (
+          <NewsArticleListItem article={article} key={index} />
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -18,6 +39,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  newsList: {
+    marginTop: 10,
   },
 });
 
