@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Entertainment = () => {
+const CategoryWiseNews = () => {
   return (
     <View style={styles.homeScreen}>
       <Text>Entertainment News Will come Here</Text>
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Entertainment;
+export default CategoryWiseNews;
