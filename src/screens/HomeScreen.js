@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import Loader from '../components/Loader';
 import NewsArticleListItem from '../components/NewsArticleListItem';
 import { Input } from 'native-base';
+import axios from 'axios';
 
 const HomeScreen = () => {
 
@@ -13,11 +14,21 @@ const HomeScreen = () => {
 
     setShowLoadingScreen(true);
 
-    fetch(`https://toofan-xpress-backend.herokuapp.com/top-headlines`)
-      .then(response => (response.json()))
-      .then(data => {
+    let cancelToken;
+
+    if (typeof cancelToken !== typeof undefined) {
+      cancelToken.cancel('Cancelling Old Request');
+    }
+
+    //creating a cancel token
+    cancelToken = axios.CancelToken.source();
+
+    axios.get(`https://toofan-xpress-backend.herokuapp.com/top-headlines`, {
+      cancelToken: cancelToken.token,
+    })
+      .then(response => {
         setShowLoadingScreen(false);
-        setNewsArticleList(data.articles);
+        setNewsArticleList(response.data.articles);
       })
       .catch(error => console.error(error));
   };
