@@ -1,15 +1,18 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './screens/HomeScreen';
-const Stack = createNativeStackNavigator();
+import Entertainment from './screens/Entertainment';
+
+const Drawer = createDrawerNavigator();
 
 const AppContainer = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Entertainment">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Entertainment" component={Entertainment} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

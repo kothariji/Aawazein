@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-function HomeScreen() {
+const HomeScreen = () => {
   return (
     <View style={styles.homeScreen}>
       <Text>Latest News Will come Here</Text>
