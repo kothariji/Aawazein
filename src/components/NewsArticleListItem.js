@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 const NewsArticleListItem = ({ article }) => {
+
   return (
     <View style={styles.listItem}>
       <Image

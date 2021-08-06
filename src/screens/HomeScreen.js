@@ -64,9 +64,11 @@ const HomeScreen = () => {
       />
       {showLoadingScreen ? (<Loader />) : (
         <ScrollView style={styles.newsList}>
-          {newsArticleList.map((article, index) => (
-            <NewsArticleListItem article={article} key={index} />
-          ))}
+          {newsArticleList
+            .filter((article) => article.urlToImage !== null)
+            .map((article, index) => (
+              <NewsArticleListItem article={article} key={index} />
+            ))}
         </ScrollView>)}
     </View>
   );
