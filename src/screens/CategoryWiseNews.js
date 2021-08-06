@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import NewsArticleListItem from '../components/NewsArticleListItem';
 
 const CategoryWiseNews = ({ route }) => {
