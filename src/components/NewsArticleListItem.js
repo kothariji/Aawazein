@@ -12,8 +12,9 @@ const NewsArticleListItem = ({ article }) => {
         resizeMode={'cover'}
       />
       <View>
-        <Text style={styles.listItemText}>{article.title.substring(0, 100)}</Text>
+        <Text style={styles.listItemText}>{article.title.substring(0, 70)}</Text>
         {/* <Text style={styles.listItemSource}>{article.source.name}</Text> */}
+        <Text style={styles.listItemNewsLink}>Go to News</Text>
       </View>
     </View>
   );
@@ -47,6 +48,12 @@ const styles = StyleSheet.create({
   listItemText: {
     marginLeft: 10,
     maxWidth: '90%',
+  },
+
+  listItemNewsLink: {
+    paddingTop: 10,
+    paddingLeft: 210,
+    fontStyle: 'italic',
   },
 });
 
