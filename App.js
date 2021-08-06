@@ -1,19 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-
+import AppContainer from './src/router';
+import { NativeBaseProvider } from 'native-base';
 const App = () => {
   return (
-    <View style={styles.homepage}>
-      <Text>Hello</Text>
-    </View>
+    <NativeBaseProvider>
+      <AppContainer />
+    </NativeBaseProvider>
   );
 };
 
-const styles = StyleSheet.create({
-  homepage: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 export default App;
