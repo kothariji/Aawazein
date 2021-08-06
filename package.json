@@ -13,6 +13,7 @@
     "@react-navigation/drawer": "^6.0.1",
     "@react-navigation/native": "^6.0.1",
     "@react-navigation/native-stack": "^6.0.2",
+    "axios": "^0.21.1",
     "native-base": "^3.0.7",
     "react": "17.0.1",
     "react-native": "0.64.2",

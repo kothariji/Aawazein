@@ -1,9 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, Image, Linking } from 'react-native';
+import { Modal, Button } from 'native-base';
 
 const NewsArticleListItem = ({ article }) => {
+
+  const [showNewsModal, setShowNewsModal] = useState(false);
+
+
   return (
-    <View style={styles.listItem}>
+    <TouchableOpacity style={styles.listItem} onPress={() => setShowNewsModal(true)}>
       <Image
         style={styles.listItemImage}
         source={{
@@ -12,11 +17,41 @@ const NewsArticleListItem = ({ article }) => {
         resizeMode={'cover'}
       />
       <View>
-        <Text style={styles.listItemText}>{article.title.substring(0, 70)}</Text>
-        {/* <Text style={styles.listItemSource}>{article.source.name}</Text> */}
-        <Text style={styles.listItemNewsLink}>Go to News</Text>
+        <Text style={styles.listItemText}>{article.title.substring(0, 100)}...</Text>
       </View>
-    </View>
+      <Modal isOpen={showNewsModal} onClose={() => setShowNewsModal(false)}>
+        <Modal.Content maxWidth="400px">
+          <Modal.Header>{article.title}</Modal.Header>
+          <Modal.Body>
+            <Image
+              style={styles.modalNewsImage}
+              source={{
+                uri: `${article.urlToImage}`,
+              }}
+              resizeMode={'cover'}
+            />
+            <Text>{article.description}</Text>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button.Group variant="ghost" space={2}>
+              <Button
+                onPress={() => {
+                  Linking.openURL(article.url);
+                }}
+              >Open in Browser</Button>
+              <Button
+                onPress={() => {
+                  setShowNewsModal(false);
+                }}
+              >
+                CLOSE
+              </Button>
+            </Button.Group>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
+
+    </TouchableOpacity>
   );
 };
 
@@ -55,6 +90,13 @@ const styles = StyleSheet.create({
     paddingLeft: 210,
     fontStyle: 'italic',
   },
+
+  modalNewsImage: {
+    width: 300,
+    height: 300,
+    marginVertical: 20,
+  },
+
 });
 
 export default NewsArticleListItem;

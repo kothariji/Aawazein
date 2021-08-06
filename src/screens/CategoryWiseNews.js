@@ -26,15 +26,18 @@ const CategoryWiseNews = ({ route }) => {
 
   useEffect(() => {
     fetchCategoryWiseNews();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
   let childToRender = showLoadingScreen ? (<Loader />) : (
     <View style={styles.homeScreen}>
       <ScrollView style={styles.newsList}>
-        {newsArticleList.map((article, index) => (
-          <NewsArticleListItem article={article} key={index} />
-        ))}
+        {newsArticleList
+          .filter((article) => article.urlToImage !== null)
+          .map((article, index) => (
+            <NewsArticleListItem article={article} key={index} />
+          ))}
       </ScrollView>
     </View>);
 
