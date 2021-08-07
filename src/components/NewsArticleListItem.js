@@ -73,11 +73,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     maxWidth: '95%',
     height: 80,
+    borderRightWidth: 4,
+    borderRightColor: 'rgba(230,26,6,0.3)',
+    borderBottomWidth: 2,
+    borderBottomColor: 'rgba(230,26,6,0.3)',
   },
 
   listItemImage: {
     width: 60,
     height: 60,
+    borderRadius: 7,
   },
 
   listItemText: {

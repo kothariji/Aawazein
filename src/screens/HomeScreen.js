@@ -58,7 +58,7 @@ const HomeScreen = () => {
         w="95%"
         mx={20}
         mt={3}
-        placeholder="Search News"
+        placeholder="🔍 Search News"
         style={styles.searchInput}
         onChangeText={handleSearchInputChange}
       />
